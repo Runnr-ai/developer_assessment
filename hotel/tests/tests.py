@@ -5,8 +5,6 @@ from hotel.models import Stay, Hotel, Guest
 from hotel.tests import load_api_fixture
 from hotel.tests.factories import HotelFactory
 
-from hotel.pms_systems import CleanedWebhookPayload
-
 
 class PMS_Apaleotest(django.test.TestCase):
     def setUp(self) -> None:
@@ -22,7 +20,7 @@ class PMS_Apaleotest(django.test.TestCase):
         if not cleaned_payload:
             self.fail("No cleaned payload returned")
         else:
-            self.assertIsInstance(cleaned_payload, CleanedWebhookPayload)
+            self.assertIsInstance(cleaned_payload, dict)
             self.assertEqual(cleaned_payload["hotel_id"], self.hotel.id)
             self.assertIsInstance(cleaned_payload["data"], dict)
 
