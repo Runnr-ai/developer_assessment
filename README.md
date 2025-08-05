@@ -7,6 +7,8 @@ This repository contains working Django code. Run your code locally, you don't n
 
 ## Migrate database and run server
 `python manage.py migrate`
+`python manage.py createsuperuser`
+`python manage.py init_data`
 `python manage.py runserver 0.0.0.0:8000`
 
 ## Relevant information for backend developers
