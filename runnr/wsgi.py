@@ -1,5 +1,5 @@
 """
-WSGI config for integrations project.
+WSGI config for runnr project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'integrations.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'runnr.settings')
 
 application = get_wsgi_application()
