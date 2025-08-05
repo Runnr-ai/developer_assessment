@@ -2,7 +2,7 @@
 This repository contains working Django code. Run your code locally, you don't need any external services.
 
 ## Prerequisites:
-- use Python version 3.12
+- use Python version 3.13
 - install dependencies by running: `pip install -r requirements.txt`
 
 ## Migrate database and run server
