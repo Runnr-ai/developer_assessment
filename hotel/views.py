@@ -16,7 +16,6 @@ def chat(request):
         "all_guests": Guest.objects.all(),
     }
 
-
     return render(
         request,
         "hotel/chat.html",
@@ -26,9 +25,14 @@ def chat(request):
 def chat_data(request):
     return JsonResponse(
         {
-            "hotel": Hotel.objects.first(),
-            "guest": Guest.objects.first(),
-            "all_guests": Guest.objects.all(),
+            "hotel_name": Hotel.objects.first().name,
+            "guest": {
+                "name": Guest.objects.first().name,
+                "phone": Guest.objects.first().phone,
+            },
+            "all_guests": [
+                {"name": guest.name, "phone": guest.phone} for guest in Guest.objects.all()
+            ],
         },
     )
 
