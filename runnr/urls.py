@@ -19,6 +19,9 @@ from django.urls import path
 from hotel import views
 
 urlpatterns = [
+    path("", views.chat, name="chat"),
     path("admin/", admin.site.urls),
+    path("chat_data/", views.chat_data, name="chat_data"),
+    path("chat/", views.chat, name="chat"),
     path("webhook/<str:pms_name>/", views.webhook, name="webhook"),
 ]

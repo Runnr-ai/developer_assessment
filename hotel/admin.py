@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from hotel.models import Hotel, Guest, Stay
+
+
+admin.site.register(Hotel)
+admin.site.register(Guest)
+admin.site.register(Stay)

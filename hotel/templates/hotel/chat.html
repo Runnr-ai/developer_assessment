@@ -1,0 +1,14 @@
+<h1>Chat</h1>
+
+<div>
+    <h2>Guest</h2>
+    <p>{{ guest.name }}</p>
+    <p>{{ guest.phone }}</p>
+</div>
+
+<div>
+    <h2>All Guests</h2>
+    {% for guest in all_guests %}
+        <p>{{ guest.name }} - {{ guest.phone }}</p>
+    {% endfor %}
+</div>

@@ -1,11 +1,36 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 
 from hotel import pms_systems
 
-from hotel.models import Hotel
+from hotel.models import Hotel, Guest
 
+
+def chat(request):
+
+    context = {
+        "hotel": Hotel.objects.first(),
+        "guest": Guest.objects.first(),
+        "all_guests": Guest.objects.all(),
+    }
+
+
+    return render(
+        request,
+        "hotel/chat.html",
+        context,
+    )
+
+def chat_data(request):
+    return JsonResponse(
+        {
+            "hotel": Hotel.objects.first(),
+            "guest": Guest.objects.first(),
+            "all_guests": Guest.objects.all(),
+        },
+    )
 
 @csrf_exempt
 @require_POST
