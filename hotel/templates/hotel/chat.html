@@ -1,70 +1,47 @@
 <html>
-    <head>
-        <title>Chat</title>
+  <head>
+    <title>Chat</title>
 
-        <!-- bootstrap css -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-        <!-- react js-->
-        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-                crossorigin></script>
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- react js-->
+    <script
+      type="module"
+      crossorigin
+      src="http://localhost:4173/widget.js"
+    ></script>
+    <link
+      rel="modulepreload"
+      crossorigin
+      href="http://localhost:4173/assets/app-CeCeTMzf.js"
+    />
+  </head>
+  <body>
+    <h1>Chat</h1>
 
-        <!-- htmx js -->
-        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
+    <div id="react-component"></div>
 
-    </head>
-    <body>
-        <h1>Chat</h1>
-        
-        <div id="react-component"></div>
+    <button hx-get="/chat_data" hx-swap="outerHTML">Click Me</button>
 
-        <button hx-get="/chat_data" hx-swap="outerHTML">
-            Click Me
-        </button>
+    <div>
+      <h2>Guest</h2>
+      <p id="guest-name">{{ guest.name }}</p>
+      <p id="guest-phone">{{ guest.phone }}</p>
+    </div>
 
-        <div>
-            <h2>Guest</h2>
-            <p id="guest-name">{{ guest.name }}</p>
-            <p id="guest-phone">{{ guest.phone }}</p>
-        </div>
-        
-        <div>
-            <h2>All Guests</h2>
-            {% for guest in all_guests %}
-                <p id="guest-name">{{ guest.name }}</p>
-                <p id="guest-phone">{{ guest.phone }}</p>
-            {% endfor %}
-        </div>
+    <div>
+      <h2>All Guests</h2>
+      {% for guest in all_guests %}
+      <p id="guest-name">{{ guest.name }}</p>
+      <p id="guest-phone">{{ guest.phone }}</p>
+      {% endfor %}
+    </div>
 
-        <!-- react test -->
-        <script type="text/babel">
-            function MyComponent() {
-              const [count, setCount] = React.useState(0);
-
-              return (
-                <div>
-                  <button type="button" class="btn btn-primary btn-sm" onClick={() => setCount(count + 1)}>Increment {count}</button>
-                </div>
-              );
-            }
-            const root = ReactDOM.createRoot(document.getElementById('react-component'));
-            root.render(<MyComponent />);
-        </script>
-
-        <!-- htmx test -->
-        <script type="text/javascript">
-            document.body.addEventListener('htmx:configRequest', (event) => {
-                event.detail.parameters['X-CSRFToken'] = '{{ csrf_token }}';
-            });
-
-            document.body.addEventListener('htmx:configRequest', (event) => {
-                event.detail.parameters['X-CSRFToken'] = '{{ csrf_token }}';
-            });
-        </script>
-        
-        <!-- bootstrap js -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" />
-    </body>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" />
+  </body>
 </html>
