@@ -20,4 +20,11 @@ python manage.py runserver 0.0.0.0:8000
 - The file `models.py` contains your database models. The models should be mostly self-explanatory. Relations are defined and some columns have `help_text`.
 
 ## Relevant information for frontend developers
-- The file `views.py` contains an endpoint that renders the a chat page called `chat`. It also contains an endpoint that returns a json with chat data called `chat_data`.
+- The file `views.py` contains:
+  - an endpoint that renders the **chat page** (`chat`), with a guest list on the left
+  - an endpoint that returns guest details in **JSON** (`guest_data`)
+- The template `hotel/chat.html` already renders the guest list (server-side).
+- A React widget placeholder is included in the template (`<div id="react-widget"></div>`).  
+  Your task is to mount a component here and fetch/display guest details.
+- Instructions for installing and running the widget are in the [Widget README](widget/README.md).
+- A wireframe of the expected layout is included in `docs/wireframe.png`.

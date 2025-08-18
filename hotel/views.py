@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render
 
 from hotel import pms_systems
@@ -12,7 +12,6 @@ def chat(request):
 
     context = {
         "hotel": Hotel.objects.first(),
-        "guest": Guest.objects.first(),
         "all_guests": Guest.objects.all(),
     }
 
@@ -26,15 +25,33 @@ def chat_data(request):
     return JsonResponse(
         {
             "hotel_name": Hotel.objects.first().name,
-            "guest": {
-                "name": Guest.objects.first().name,
-                "phone": Guest.objects.first().phone,
-            },
             "all_guests": [
-                {"name": guest.name, "phone": guest.phone} for guest in Guest.objects.all()
+                {"name": guest.name} for guest in Guest.objects.all()
             ],
         },
     )
+
+def guest_data(request, guest_id):
+    try:
+        guest = Guest.objects.get(id=guest_id)
+    except Guest.DoesNotExist:
+        raise Http404("Guest not found")
+
+    data = {
+        "name": guest.name,
+        "phone": guest.phone,
+        "language": guest.language,
+        "stays": [
+            {
+                "hotel": stay.hotel.name,
+                "checkin": stay.checkin.isoformat() if stay.checkin else None,
+                "checkout": stay.checkout.isoformat() if stay.checkout else None,
+            }
+            for stay in guest.stays.all()
+        ],
+    }
+
+    return JsonResponse(data)
 
 @csrf_exempt
 @require_POST
