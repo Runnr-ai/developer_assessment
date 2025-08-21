@@ -23,5 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("chat_data/", views.chat_data, name="chat_data"),
     path("chat/", views.chat, name="chat"),
+    path("guest/<int:guest_id>/", views.guest_data, name="guest_data"),
     path("webhook/<str:pms_name>/", views.webhook, name="webhook"),
 ]

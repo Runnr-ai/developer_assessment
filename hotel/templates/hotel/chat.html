@@ -18,7 +18,7 @@
     <script
       type="module"
       crossorigin
-      src="http://localhost:5173/widget.js"
+      src="http://localhost:4173/widget.js"
     ></script>
   </head>
   <body class="bg-light">
@@ -37,7 +37,7 @@
         <div class="col-md-3">
         <h5 class="mb-3">Guests</h5>
           {% for guest in all_guests %}
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="{% url 'guest_data' guest.id %}" class="list-group-item list-group-item-action">
               {{ guest.name }}
             </a>
           {% endfor %}
@@ -46,8 +46,7 @@
         <!-- Guest Details -->
         <div class="col-md-9">
           <h5 class="mb-3">Guest Details</h5>
-          <div id="react-widget" class="border rounded p-3 bg-white shadow-sm">
-            <!-- Candidate integrates React widget here -->
+          <div id="react-component" class="border rounded p-3 bg-white shadow-sm">
             <p class="text-muted">Select a guest to see details.</p>
           </div>
         </div>
