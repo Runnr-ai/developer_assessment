@@ -22,7 +22,9 @@ class PMS_Apaleotest(django.test.TestCase):
         if not cleaned_payload:
             self.fail("No cleaned payload returned")
         else:
-            self.assertIsInstance(cleaned_payload, CleanedWebhookPayload)
+            # TypedDict does not support isinstance checks, so verify the shape instead
+            self.assertIsInstance(cleaned_payload, dict)
+            self.assertEqual(set(cleaned_payload.keys()), set(CleanedWebhookPayload.__annotations__))
             self.assertEqual(cleaned_payload["hotel_id"], self.hotel.id)
             self.assertIsInstance(cleaned_payload["data"], dict)
 
