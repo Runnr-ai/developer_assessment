@@ -13,6 +13,11 @@ python manage.py init_data
 python manage.py runserver 0.0.0.0:8000
 ```
 
+## Run tests
+```
+python manage.py test
+```
+
 ## Relevant information for backend developers
 - The file `views.py` contains a webhook endpoint to receive updates from the PMS. These updates don't contain any details of the actual reservations. They require you to fetch additional details of any reservation.
 - The file `external_api.py` mocks API calls that are available to you to get additional guest and reservation details. Note that the API calls sometimes generate errors, or invalid data. You should deal with those in the way you see fit.
@@ -27,4 +32,4 @@ python manage.py runserver 0.0.0.0:8000
 - A React widget placeholder is included in the template (`<div id="react-widget"></div>`).  
   Your task is to mount a component here and fetch/display guest details.
 - Instructions for installing and running the widget are in the [Widget README](widget/README.md).
-- A wireframe of the expected layout is included in `docs/wireframe.png`.
+- A wireframe of the expected layout is included in `docs/chat_page_wireframe.png`.
